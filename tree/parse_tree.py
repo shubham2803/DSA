@@ -24,7 +24,7 @@ def build_parse_tree(equation):
             current_node.insert_right('')
             stack.push(current_node)
             current_node = current_node.right_child
-
+        # test
         elif ele == ')':
             current_node = stack.pop()
         else:
