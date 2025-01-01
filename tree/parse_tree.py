@@ -34,6 +34,13 @@ def build_parse_tree(equation):
     return new_node
 
 
+def inorder(tree):
+    if tree is not None:
+        inorder(tree.get_left_child())
+        print(tree.get_root())
+        inorder(tree.get_right_child())
+
+
 def preorder(tree):
     if tree:
         print(tree.get_root())
@@ -41,4 +48,4 @@ def preorder(tree):
         preorder(tree.get_right_child())
 
 
-preorder(build_parse_tree('( 3 + ( 4 * 5 ) + ( 4 + ( 6 * 12 ) ) )'))
+inorder(build_parse_tree('( ( 3 + ( 4 * 5 ) ) + ( ( 10 + 5 ) * 3 )'))
