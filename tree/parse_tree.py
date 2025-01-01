@@ -15,7 +15,7 @@ def build_parse_tree(equation):
 
     for ele in equation:
         if ele == '(':
-            current_node.insert_left(BinaryTree(''))
+            current_node.insert_left('')
             stack.push(current_node)
             current_node = current_node.get_left_child()
 
@@ -32,6 +32,9 @@ def build_parse_tree(equation):
             current_node = stack.pop()
 
     return new_node
+
+
+build_parse_tree('( ( 3 + ( 4 * 5 ) ) + ( ( 10 + 5 ) * 3 )')
 
 
 def inorder(tree):
