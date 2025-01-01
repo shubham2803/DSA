@@ -6,7 +6,7 @@ from class_tree1 import BinaryTree
 
 
 def build_parse_tree(equation):
-    equation = equation.split()
+    equation = equation.split(' ')
 
     stack = Stack()
     new_node = BinaryTree('')
@@ -15,13 +15,14 @@ def build_parse_tree(equation):
 
     for ele in equation:
         if ele == '(':
-            current_node.left_child = BinaryTree('')
-            current_node = current_node.left_child
+            current_node.insert_left(BinaryTree(''))
             stack.push(current_node)
+            current_node = current_node.get_left_child()
 
         elif ele in ['+', '*', '-', '/', '//']:
             current_node.root = ele
-            current_node.right_child = BinaryTree('')
+            current_node.insert_right('')
+            stack.push(current_node)
             current_node = current_node.right_child
 
         elif ele == ')':
@@ -33,4 +34,11 @@ def build_parse_tree(equation):
     return new_node
 
 
-print(build_parse_tree('(3+(4*5))'))
+def preorder(tree):
+    if tree:
+        print(tree.get_root())
+        preorder(tree.get_left_child())
+        preorder(tree.get_right_child())
+
+
+preorder(build_parse_tree('( 3 + ( 4 * 5 ) + ( 4 + ( 6 * 12 ) ) )'))

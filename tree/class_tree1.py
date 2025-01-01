@@ -32,5 +32,16 @@ class BinaryTree:
     def get_root(self):
         return self.root
 
+    @classmethod
+    def preorder(cls, tree):
+        if tree:
+            print(tree.get_root())
+            cls.preorder(tree.get_left_child())
+            cls.preorder(tree.get_right_child())
 
-
+    def pre_order(self):
+        print(self.root)
+        if self.left_child:
+            self.left_child.pre_order()
+        if self.right_child:
+            self.right_child.pre_order()
