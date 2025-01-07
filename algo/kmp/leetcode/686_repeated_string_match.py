@@ -36,13 +36,13 @@ def repeatedStringMatch(a: str, b: str) -> int:
                 i += 1
                 j += 1
                 if j == len(pat):
+                    print(i-len(pat))
                     return True
             else:
                 if j != 0:
                     j = lps[j - 1]
                 else:
                     i += 1
-
         return False
 
     repeat = len(b) // len(a)
