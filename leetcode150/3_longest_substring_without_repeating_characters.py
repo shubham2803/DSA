@@ -1,31 +1,19 @@
 # https://leetcode.com/problems/longest-substring-without-repeating-characters/?envType=study-plan-v2&envId=top-interview-150
 
 def lengthOfLongestSubstring(s: str) -> int:
-    if not s:
-        return 0
-    if len(s) < 2:
-        return 1
-    sub_l = ''
-    max_w = 0
+    left = 0
+    max_length = 0
+    char_set = set()
 
-    for i in range(0, len(s) - 1):
-        start = i
-        next = i + 1
+    for right in range(len(s)):
 
-        sub = s[start]
-        s_map = {}
-        while (next < len(s)) and (s[start] != s[next]):
-            if s[next] not in s_map:
-                sub += s[next]
-                s_map[s[next]] = True
-            else:
-                break
-            next += 1
+        while s[right] in char_set:
+            char_set.remove(s[left])
+            left += 1
 
-        if len(sub) > len(sub_l):
-            sub_l = sub
-            max_w = len(sub_l)
-    return max_w
+        char_set.add(s[right])
+        max_length = max(max_length, (right - left + 1))
 
+    return max_length
 
 print(lengthOfLongestSubstring('au'))
