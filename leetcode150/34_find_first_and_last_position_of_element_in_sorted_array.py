@@ -3,34 +3,39 @@ from typing import List
 
 
 def searchRange(nums: List[int], target: int) -> List[int]:
-    if not nums:
-        return [-1, -1]
-    if len(nums) < 2:
-        if nums[0] == target:
-            return [0, 0]
-    s = 0
-    e = len(nums) - 1
+    def findFirst(nums, target):
+        left, right = 0, len(nums) - 1
+        first = -1
+        while left <= right:
+            mid = left + (right - left) // 2
+            if nums[mid] == target:
+                first = mid
+                right = mid - 1
+            elif nums[mid] < target:
+                left = mid + 1
+            else:
+                right = mid - 1
+        return first
 
-    while s <= e:
-        mid = (s + e) // 2
-        if nums[mid] == target:
-            s = mid
-            e = mid
-            while (s > 0) and nums[s - 1] == target:
-                if nums[s - 1] == target:
-                    print(s)
-                    s = s - 1
-            while (e < len(nums) - 1) and nums[e + 1] == target:
-                if nums[e] == target:
-                    e = e + 1
-            return [s, e]
-        elif target > nums[mid]:
-            s = mid + 1
-        else:
-            e = e - 1
-    return [-1, -1]
+    def findLast(nums, target):
+        left, right = 0, len(nums) - 1
+        last = -1
+        while left <= right:
+            mid = left + (right - left) // 2
+            if nums[mid] == target:
+                last = mid
+                left = mid + 1
+            elif nums[mid] < target:
+                left = mid + 1
+            else:
+                right = mid - 1
+        return last
+
+    first = findFirst(nums, target)
+    last = findLast(nums, target)
+    return [first, last]
 
 
-nums = [8, 8, 8, 8]
+nums = [5,7,7,8,8,10]
 target = 8
 print(searchRange(nums, target))
