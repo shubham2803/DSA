@@ -17,7 +17,7 @@ def invertTree(root: Optional[TreeNode]) -> Optional[TreeNode]:
     root.left = root.right
     root.right = temp
 
-    self.invertTree(root.left)
-    self.invertTree(root.right)
+    invertTree(root.left)
+    invertTree(root.right)
 
     return root
