@@ -6,3 +6,6 @@ def trailingZeroes(n: int) -> int:
         n //= 5
         count += n
     return count
+
+
+print(trailingZeroes(100))
